@@ -1,9 +1,29 @@
 /* General */
+
+/* CSS HEX */
+:root {
+    --green: #8cd867;
+    --black: #1e1a1d;
+    --pink: #ef476f;
+    --blue: #3aaed8;
+    --yellow: #ffba08;
+    --white: #E0D3DE;
+    background-color: var(--black);
+}
+
+/* @font-face {
+    font-family: 'AtkinsonHyperlegible';
+    src: url("../fonts/AtkinsonHyperlegible-Regular.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+} */
+
 body {
     margin: 0;
     line-height: 1.5em;
-    color: #333333;
-    font-family: helvetica, arial, sans-serif;
+    color: var(--white);
+    font-family: literata, Georgia, serif;
+    font-size: large;
 }
 
 img {
@@ -15,15 +35,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     line-height: 1.2em;
     margin-top: 1em;
+    font-weight: bold;
 }
 
 a:link, a:visited {
-    color: #0000e0;
+    /* color: var(--blue); */
     text-decoration: none
 }
 
 a:hover, a:active {
-    color: #0000ff;
+    /* color:  var(--blue); */
     text-decoration: underline
 }
 
@@ -39,8 +60,6 @@ nav section, header section, main, footer section {
 
 /* Navigation panel */
 nav {
-    background: #333333;
-    border-bottom: thin solid #111111;
     line-height: 3em;
 }
 
@@ -48,14 +67,14 @@ nav a {
     margin-right: 1em;
 }
 
-nav a:link, nav a:visited {
-    color: #cccccc;
-}
+/* nav a:link, nav a:visited {
+    color: var(--blue);
+} */
 
-nav a:hover, nav a:active {
-    color: #ffffff;
+/* nav a:hover, nav a:active {
+    color: var(--blue);
     text-decoration: none;
-}
+} */
 
 @media screen and (min-width: 600px) {
     nav .links {
@@ -66,11 +85,8 @@ nav a:hover, nav a:active {
 
 /* Footer */
 footer {
-    background: #f0f0f0;
-    border-top: thin solid #e0e0e0;
     margin-top: 2em;
     padding: 1em 0;
-    box-shadow: 0 100vh 0 100vh #f0f0f0;
     text-align: center;
 }
 
@@ -96,19 +112,19 @@ article {
 article h2 a:link, article h2 a:visited,
 article h1 a:link, article h1 a:visited,
 .more:link, .more:visited {
-    color: #333333;
+    color: var(--blue);
 }
 
 article h2 a:hover, article h2 a:active,
 article h1 a:hover, article h1 a:active,
 .more:hover, .more:active {
-    color: #777777;
+    color:  var(--blue);
 }
 
 p.meta {
     margin-top: 0;
     font-size: 0.8em;
-    color: #777777;
+    color: var(--white);
     font-style: italic;
 }
 
@@ -132,7 +148,7 @@ div .more {
 }
 
 .rss:link, .rss:visited, .rss:hover, .rss:active {
-    color: #ffffff;
+    color: var(--blue);
     text-decoration: none;
 }
 
@@ -142,4 +158,23 @@ div .more {
 
 .rss:hover, .rss:active {
     background: #ff8822;
+}
+
+
+/* CUSTOM */
+
+.blog {
+    color: var(--blue);
+}
+
+.news {
+    color: var(--green);
+}
+
+.contact {
+    color: var(--yellow);
+}
+
+.about {
+    color: var(--pink);
 }

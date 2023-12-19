@@ -175,8 +175,8 @@ def main():
     # Default parameters.
     params = {
         'base_path': '',
-        'subtitle': 'Lorem Ipsum',
-        'author': 'Admin',
+        'subtitle': 'Charlie',
+        'author': 'Charlie',
         'site_url': 'http://localhost:8000',
         'current_year': datetime.datetime.now().year
     }
@@ -203,25 +203,31 @@ def main():
     make_pages('content/[!_]*.html', '_site/{{ slug }}/index.html',
                page_layout, **params)
 
-    # Create blogs.
-    blog_posts = make_pages('content/blog/*.md',
-                            '_site/blog/{{ slug }}/index.html',
-                            post_layout, blog='blog', **params)
-    news_posts = make_pages('content/news/*.html',
-                            '_site/news/{{ slug }}/index.html',
-                            post_layout, blog='news', **params)
+    # Create blogs and pages.
+    # There is one blog for longer posts (writing) and one for
+    # quick informal notes (dev log).
+    # Individual pages like About and Projects are just standalone posts.
+    writing_posts = make_pages('content/writing/*.md',
+                            '_site/writing/{{ slug }}/index.html',
+                            post_layout, blog='writing', **params)
+    log_posts = make_pages('content/log/*.md',
+                            '_site/log/{{ slug }}/index.html',
+                            post_layout, blog='log', **params)
+    pages = make_pages('content/pages/*.md',
+                            '_site/pages/{{ slug }}/index.html',
+                            post_layout, **params)
 
     # Create blog list pages.
-    make_list(blog_posts, '_site/blog/index.html',
-              list_layout, item_layout, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/index.html',
-              list_layout, item_layout, blog='news', title='News', **params)
+    make_list(writing_posts, '_site/writing/index.html',
+              list_layout, item_layout, blog='writing', title='Writing', blurb="A place for slightly more developed thoughts.", **params)
+    make_list(log_posts, '_site/log/index.html',
+              list_layout, item_layout, blog='log', title='Log', blurb="Mainly notes to self.", **params)
 
     # Create RSS feeds.
-    make_list(blog_posts, '_site/blog/rss.xml',
-              feed_xml, item_xml, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/rss.xml',
-              feed_xml, item_xml, blog='news', title='News', **params)
+    # make_list(writing_posts, '_site/writing/rss.xml',
+    #           feed_xml, item_xml, blog='writing', title='Writing', **params)
+    # make_list(log, '_site/news/rss.xml',
+    #           feed_xml, item_xml, blog='log', title='Log', **params)
 
 
 # Test parameter to be set temporarily by unit tests.
