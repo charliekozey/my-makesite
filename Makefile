@@ -4,13 +4,13 @@ site:
 serve: site
 	if python3 -c 'import http.server' 2> /dev/null; then \
 	    echo Running Python3 http.server ...; \
-	    cd _site && python3 -m http.server; \
+	    cd docs && python3 -m http.server; \
 	elif python -c 'import http.server' 2> /dev/null; then \
 	    echo Running Python http.server ...; \
-	    cd _site && python -m http.server; \
+	    cd docs && python -m http.server; \
 	elif python -c 'import SimpleHTTPServer' 2> /dev/null; then \
 	    echo Running Python SimpleHTTPServer ...; \
-	    cd _site && python -m SimpleHTTPServer; \
+	    cd docs && python -m SimpleHTTPServer; \
 	else \
 	    echo Cannot find Python http.server or SimpleHTTPServer; \
 	fi
@@ -42,7 +42,7 @@ REV = cat /tmp/rev.txt
 example:
 	#
 	# Remove existing output directories.
-	rm -rf _site /tmp/_site
+	rm -rf docs /tmp/_site
 	#
 	# Create params.json for makesite-demo.
 	echo '{ "base_path": "/makesite-demo", "site_url":' \

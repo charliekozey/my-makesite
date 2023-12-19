@@ -168,9 +168,10 @@ def make_list(posts, dst, list_layout, item_layout, **params):
 
 def main():
     # Create a new _site directory from scratch.
-    if os.path.isdir('_site'):
-        shutil.rmtree('_site')
-    shutil.copytree('static', '_site')
+    # Changed '_site' to 'docs' for github pages compatibility
+    if os.path.isdir('docs/'):
+        shutil.rmtree('docs/')
+    shutil.copytree('static', 'docs/')
 
     # Default parameters.
     params = {
@@ -198,9 +199,9 @@ def main():
     list_layout = render(page_layout, content=list_layout)
 
     # Create site pages.
-    make_pages('content/_index.html', '_site/index.html',
+    make_pages('content/_index.html', 'docs/index.html',
                page_layout, **params)
-    make_pages('content/[!_]*.html', '_site/{{ slug }}/index.html',
+    make_pages('content/[!_]*.html', 'docs/{{ slug }}/index.html',
                page_layout, **params)
 
     # Create blogs and pages.
@@ -208,25 +209,25 @@ def main():
     # quick informal notes (dev log).
     # Individual pages like About and Projects are just standalone posts.
     writing_posts = make_pages('content/writing/*.md',
-                            '_site/writing/{{ slug }}/index.html',
+                            'docs/writing/{{ slug }}/index.html',
                             post_layout, blog='writing', **params)
     log_posts = make_pages('content/log/*.md',
-                            '_site/log/{{ slug }}/index.html',
+                            'docs/log/{{ slug }}/index.html',
                             post_layout, blog='log', **params)
     pages = make_pages('content/pages/*.md',
-                            '_site/pages/{{ slug }}/index.html',
+                            'docs/pages/{{ slug }}/index.html',
                             post_layout, **params)
 
     # Create blog list pages.
-    make_list(writing_posts, '_site/writing/index.html',
+    make_list(writing_posts, 'docs/writing/index.html',
               list_layout, item_layout, blog='writing', title='Writing', blurb="A place for slightly more developed thoughts.", **params)
-    make_list(log_posts, '_site/log/index.html',
+    make_list(log_posts, 'docs/log/index.html',
               list_layout, item_layout, blog='log', title='Log', blurb="Mainly notes to self.", **params)
 
     # Create RSS feeds.
-    # make_list(writing_posts, '_site/writing/rss.xml',
+    # make_list(writing_posts, 'docs/writing/rss.xml',
     #           feed_xml, item_xml, blog='writing', title='Writing', **params)
-    # make_list(log, '_site/news/rss.xml',
+    # make_list(log, 'docs/news/rss.xml',
     #           feed_xml, item_xml, blog='log', title='Log', **params)
 
 

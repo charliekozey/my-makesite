@@ -1,0 +1,17 @@
+body {
+    max-width: 40rem; 
+    font-size: larger;
+    font-family: system-ui, -apple-system, sans-serif;
+    padding: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: #4b8e9a
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* test comment */

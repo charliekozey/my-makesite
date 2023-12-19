@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fixed: Configuring Flask to store session cookie - Charlie</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/css/light.css">
+</head>
+
+<body id="fixed-configuring-flask-to-store-session">
+
+<nav>
+<section>
+    <div class="home">
+        <a href="/">Charlie Kozey</a>
+    </div>
+    <br>
+    <div class="links">
+        <a href="/writing/" class="blog">Writing</a> |
+        <a href="/pages/projects/" class="news">Projects</a> |
+        <a href="/log/" class="contact">Log</a> |
+        <a href="/pages/about/" class="about">About</a>
+    </div>
+</section>
+</nav>
+
+<hr>
+
+<main>
+<article>
+<h2>Fixed: Configuring Flask to store session cookie</h2>
+<!-- <p class="meta">2023-12-06</p> -->
+<p>The Win:</p>
+<ul>
+<li>Got session cookie to save in browser during login function</li>
+</ul>
+<p>The Problem:</p>
+<ul>
+<li>Had been working fine (session cookie visible upon POST to <code>/login</code>) in Postman</li>
+<li>But cookie wasn't showing up in browser at all</li>
+</ul>
+<p>Error messages:</p>
+<ul>
+<li>Warning symbol in dev tools Network panel, next to <code>Set-Cookie</code> response header</li>
+<li>Hover over the warning, don't click it! Error message in tooltip (facepalm)</li>
+<li>Message said <code>Set-Cookie</code> header attributes needed to include <code>SameSite=None</code> and <code>Secure</code>
+<ul>
+<li>(Incorrect) value of <code>Set-Cookie</code> header:               <code>session=eyJ1c2VyX2lkIjo1N30.ZXE6sg.EsJhvTt1JwLLKYaAHhGb6H5WXxY; HttpOnly; Path=/;</code></li>
+<li><code>SameSite</code> defaulted to &quot;Lax&quot;</li>
+</ul>
+</li>
+</ul>
+<p>The Solution:</p>
+<ul>
+<li>Add configuration to <code>app.py</code> like so:</li>
+</ul>
+<pre><code class="language-py">    app.config['SESSION_COOKIE_SAMESITE'] = &quot;None&quot;
+    app.config['SESSION_COOKIE_SECURE'] = True
+
+    # Note that &quot;None&quot; is a string, not the datatype None
+</code></pre>
+
+</article>
+
+</main>
+
+<footer>
+<section>
+<!-- <p>&copy; 2023 Lorem Ipsum</p> -->
+<hr></hr>
+<p>
+    Contact me:
+    <a href="mailto:kozey@mailbox.org">Email</a> |
+    <a href="https://github.com/charliekozey">GitHub</a> |
+    <a href="https://www.linkedin.com/in/charlie-kozey-887b4823b/">LinkedIn</a>
+</p>
+</section>
+</footer>
+
+</body>
+</html>

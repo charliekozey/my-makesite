@@ -1,4 +1,4 @@
-<!-- title: Fixed: Configuring Flask to Store Session -->
+<!-- title: Fixed: Configuring Flask to store session cookie-->
 <!-- summary: Note to self: sometimes error messages are hidden in tooltips. -->
 
 The Win: 
@@ -6,7 +6,7 @@ The Win:
 
 The Problem: 
 - Had been working fine (session cookie visible upon POST to `/login`) in Postman
-  - But cookie wasn't showing up in browser at all
+- But cookie wasn't showing up in browser at all
 
 Error messages:   
 - Warning symbol in dev tools Network panel, next to `Set-Cookie` response header
